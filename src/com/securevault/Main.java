@@ -1,4 +1,5 @@
-import system.SystemInitializer;
+
+import com.securevault.system.SystemInitializer;
 
 void main(String[] args) {
     System.out.println("Secure Vault");
