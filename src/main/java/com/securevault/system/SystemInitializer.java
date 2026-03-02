@@ -10,7 +10,7 @@ public class SystemInitializer
 {
     public void initialize()
     {
-        Path rootDir = Paths.get(System.getProperty("user.home"), ".securevault");
+        Path rootDir = Paths.get(System.getProperty("user.home"), ".com.securevault");
 
         if(Files.exists(rootDir)) {
             System.out.println("System Loaded!");
@@ -23,7 +23,7 @@ public class SystemInitializer
                 "backup"
         );
         List<String> files = List.of(
-                "system/com.securevault.system.config",
+                "system/main.java.com.securevault.system.config",
                 "system/users.json"
         );
         try
