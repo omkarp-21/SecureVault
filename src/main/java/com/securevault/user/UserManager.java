@@ -1,18 +1,56 @@
 package com.securevault.user;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 class UserRegistry
 {
     List<User> users;
+
+    public List<User> getUsers()
+    {
+        return users;
+    }
+    public void setUsers(List<User> userList)
+    {
+        users = userList;
+    }
 }
 
 public class UserManager
 {
-    List<User> loadUsers()
+    UserRegistry userRegistry;
+
+    public void loadRegistry()
     {
-        List<User> users = new ArrayList<User>();
-        return users;
+        Path path = Paths.get(System.getProperty("user.home"), ".securevault", "system", "users.json");
+
+        try (FileReader reader = new FileReader(path.toFile()))
+        {
+            Gson gson = new Gson();
+            userRegistry = gson.fromJson(reader, UserRegistry.class);
+        } catch (IOException e)
+        {
+            System.err.println("Could not read vault file: " + e.getMessage());
+        }
+    }
+
+    public void saveRegistry()
+    {
+        Path path = Paths.get(System.getProperty("user.home"), ".securevault", "system", "users.json");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try (FileWriter writer = new FileWriter(path.toFile()))
+        {
+            gson.toJson(userRegistry, writer);
+            System.out.println("Users updated successfully.");
+        } catch (IOException e)
+        {
+            System.err.println("Could not read vault file: " + e.getMessage());
+        }
     }
 }
