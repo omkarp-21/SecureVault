@@ -1,7 +1,0 @@
-com\securevault\system\SystemInitializer.class
-com\securevault\user\UserManager.class
-com\securevault\Main.class
-com\securevault\auth\PasswordHasher.class
-com\securevault\user\UserRegistry.class
-com\securevault\user\UserStatus.class
-com\securevault\user\User.class
