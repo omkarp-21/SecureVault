@@ -6,21 +6,6 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-
-class UserRegistry
-{
-    List<User> users;
-
-    public List<User> getUsers()
-    {
-        return users;
-    }
-    public void setUsers(List<User> userList)
-    {
-        users = userList;
-    }
-}
 
 public class UserManager
 {
