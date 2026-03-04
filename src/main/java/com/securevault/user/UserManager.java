@@ -6,10 +6,17 @@ import com.google.gson.GsonBuilder;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class UserManager
 {
     UserRegistry userRegistry;
+
+    public UserManager()
+    {
+        System.out.println("Initializing User Registry...");
+        loadRegistry();
+    }
 
     public void loadRegistry()
     {
@@ -37,5 +44,23 @@ public class UserManager
         {
             System.err.println("Could not read vault file: " + e.getMessage());
         }
+    }
+
+    public boolean userExists(String username)
+    {
+        List<User> userList = userRegistry.getUsers();
+        for (User user : userList)
+        {
+            if (user.username.equals(username)) return true;
+        }
+        return false;
+    }
+
+    public void addUser(User user)
+    {
+        List<User> userList = userRegistry.getUsers();
+        userList.add(user);
+        userRegistry.setUsers(userList);
+        saveRegistry();
     }
 }
